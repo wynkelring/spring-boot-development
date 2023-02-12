@@ -15,8 +15,29 @@ import java.util.UUID;
 public abstract class BaseEntity implements Persistable<UUID>, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(unique = true, nullable = false, updatable = false)
+    @Column(name = TableDef.ColumnDef.BaseEntity.ID,
+            unique = true, nullable = false, updatable = false)
     private UUID id;
+
+    @Column(name = TableDef.ColumnDef.BaseEntity.CREATION_TIME,
+            nullable = false, updatable = false)
+    private Long creationTime;
+
+    @Column(name = TableDef.ColumnDef.BaseEntity.UPDATE_TIME,
+            nullable = false)
+    private Long updateTime;
+
     @Transient
     private boolean isNew;
+
+    @PrePersist
+    protected void onCreate() {
+        creationTime = updateTime = System.currentTimeMillis();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updateTime = System.currentTimeMillis();
+    }
+
 }

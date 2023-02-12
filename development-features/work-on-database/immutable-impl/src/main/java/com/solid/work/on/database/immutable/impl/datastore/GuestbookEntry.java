@@ -14,8 +14,10 @@ import org.hibernate.annotations.Immutable;
 @Setter(AccessLevel.PACKAGE)
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class GuestbookEntry extends BaseEntity {
+
     @Column(name = TableDef.ColumnDef.EhcacheTest.FULL_NAME)
     private String fullName;
+
     @Column(name = TableDef.ColumnDef.EhcacheTest.VISIT_TIME)
     private Long visitTime;
 

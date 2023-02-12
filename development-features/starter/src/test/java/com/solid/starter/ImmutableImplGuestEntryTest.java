@@ -45,9 +45,7 @@ public class ImmutableImplGuestEntryTest {
 
         assert entry.getId() != null;
         Optional<GuestbookEntry> foundEntryAfterUpdate = guestbookEntryRepository.findById(entry.getId());
-
-        System.out.println(newFullName);
-        System.out.println(foundEntryAfterUpdate.map(GuestbookEntry::getFullName).orElse(null));
+        
         //then
         assertNotEquals(
                 newFullName,

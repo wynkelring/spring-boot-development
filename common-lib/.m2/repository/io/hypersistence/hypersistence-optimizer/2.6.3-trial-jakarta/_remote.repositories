@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Feb 01 20:39:59 CET 2023
+hypersistence-optimizer-2.6.3-trial-jakarta.jar>=
+hypersistence-optimizer-2.6.3-trial-jakarta-sources.jar>=
+hypersistence-optimizer-2.6.3-trial-jakarta.pom>=
+hypersistence-optimizer-2.6.3-trial-jakarta-javadoc.jar>=

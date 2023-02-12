@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.solid</groupId>
+        <artifactId>development-features</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>starter</artifactId>
+
+    <dependencies>
+        <!-- BEGIN MODULE STARTERS -->
+        <dependency>
+            <groupId>com.solid</groupId>
+            <artifactId>feign-client-usage-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.solid</groupId>
+            <artifactId>hibernate-cache-ehcache-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.solid</groupId>
+            <artifactId>work-on-database-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- END MODULE STARTERS -->
+
+        <!-- BEGIN UTILS -->
+        <dependency>
+            <groupId>net.ttddyy</groupId>
+            <artifactId>datasource-proxy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.hypersistence</groupId>
+            <artifactId>hypersistence-optimizer</artifactId>
+        </dependency>
+        <!-- END UTILS -->
+
+        <!-- BEGIN LIBS FOR UTILITY LOADER -->
+        <dependency>
+            <groupId>com.solid</groupId>
+            <artifactId>exception</artifactId>
+            <version>${common-lib.version}</version>
+        </dependency>
+        <!-- END LIBS FOR UTILITY LOADER -->
+
+        <!-- BEGIN TEST LIBS -->
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- END TEST LIBS -->
+    </dependencies>
+
+    <build>
+        <finalName>${project.parent.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>${start-class}</mainClass>
+                    <finalName>${project.parent.artifactId}</finalName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.solid</groupId>
+        <artifactId>development-features</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>feign-client-usage</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>feign-client-usage-api</module>
+        <module>feign-client-usage-http-api</module>
+        <module>feign-client-usage-impl</module>
+        <module>feign-client-external-usage</module>
+        <module>feign-client-usage-starter</module>
+    </modules>
+
+</project>

@@ -5,7 +5,10 @@ import com.solid.common.lib.datastore.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.cache.annotation.Cacheable;
@@ -16,15 +19,15 @@ import org.springframework.cache.annotation.Cacheable;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Getter
 @Setter(AccessLevel.PACKAGE)
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class EhcacheTest extends BaseEntity {
     @Column(name = TableDef.ColumnDef.EhcacheTest.NAME)
-    private String name;
+    private final String name;
     @Column(name = TableDef.ColumnDef.EhcacheTest.DESCRIPTION)
-    private String description;
+    private final String description;
 
     @Builder(access = AccessLevel.PACKAGE)
     EhcacheTest(String name, String description) {
+        super();
         this.name = name;
         this.description = description;
     }

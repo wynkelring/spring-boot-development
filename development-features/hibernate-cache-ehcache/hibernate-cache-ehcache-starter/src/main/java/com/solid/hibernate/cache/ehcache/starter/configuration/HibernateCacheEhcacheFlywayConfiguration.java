@@ -17,13 +17,13 @@ public class HibernateCacheEhcacheFlywayConfiguration {
     }
 
     @Bean("hibernateEhcacheFlyway")
-    public void hibernateEhcacheFlyway() {
-        Flyway.configure()
+    public Flyway hibernateEhcacheFlyway() {
+        Flyway flyway = Flyway.configure()
                 .dataSource(hibernateEhcacheDataSource)
                 .locations("hibernate-ehcache/migrations")
                 .baselineOnMigrate(true)
-                .load()
-                .migrate();
+                .load();
+        flyway.migrate();
+        return flyway;
     }
-
 }

@@ -10,9 +10,8 @@ import java.util.UUID;
 @MappedSuperclass
 @Getter
 @Setter(AccessLevel.PROTECTED)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class BaseEntity implements Persistable<UUID>, Serializable {
+public class BaseEntity implements Persistable<UUID>, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = TableDef.ColumnDef.BaseEntity.ID,
@@ -27,9 +26,6 @@ public abstract class BaseEntity implements Persistable<UUID>, Serializable {
             nullable = false)
     private Long updateTime;
 
-    @Transient
-    private boolean isNew;
-
     @PrePersist
     protected void onCreate() {
         creationTime = updateTime = System.currentTimeMillis();
@@ -40,4 +36,18 @@ public abstract class BaseEntity implements Persistable<UUID>, Serializable {
         updateTime = System.currentTimeMillis();
     }
 
+    @Builder(access = AccessLevel.PACKAGE)
+    protected BaseEntity() {
+    }
+
+    @Override
+    public UUID getId() {
+        return this.id;
+    }
+
+    @Override
+    @Transient
+    public boolean isNew() {
+        return this.id == null;
+    }
 }

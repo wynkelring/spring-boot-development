@@ -1,5 +1,5 @@
 FROM project-parent:latest as parent-loader
-FROM maven:3.8.7-openjdk-18-slim as libs-builder
+FROM maven:3.9.5-eclipse-temurin-21-alpine as libs-builder
 
 WORKDIR /app
 
@@ -11,6 +11,7 @@ ADD cqs/ cqs
 ADD datastore/ datastore
 ADD exception/ exception
 ADD feign-configuration/ feign-configuration
+ADD steps-domain/ steps-domain
 ADD pom.xml .
 
 RUN mvn clean deploy

@@ -1,4 +1,4 @@
-FROM maven:3.8.7-openjdk-18-slim as parent-builder
+FROM maven:3.9.5-eclipse-temurin-21-alpine as parent-builder
 
 WORKDIR /app
 

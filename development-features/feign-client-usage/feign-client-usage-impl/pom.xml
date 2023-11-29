@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.solid</groupId>
         <artifactId>feign-client-usage</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${build-version}</version>
     </parent>
 
     <artifactId>feign-client-usage-impl</artifactId>

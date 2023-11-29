@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.solid</groupId>
         <artifactId>development-features</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${build-version}</version>
     </parent>
 
     <artifactId>work-on-database</artifactId>
@@ -15,6 +15,7 @@
     <modules>
         <module>work-on-database-starter</module>
         <module>immutable-impl</module>
+        <module>relations-impl</module>
     </modules>
 
 </project>

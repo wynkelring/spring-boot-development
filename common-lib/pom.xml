@@ -22,6 +22,7 @@
         <module>datastore</module>
         <module>exception</module>
         <module>feign-configuration</module>
+        <module>steps-domain</module>
     </modules>
 
 </project>

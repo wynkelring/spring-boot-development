@@ -1,38 +1,28 @@
 FROM project-parent:latest as parent-loader
 FROM common-lib:latest as libs-loader
-FROM ghcr.io/graalvm/graalvm-ce:ol9-java17-22.3.1 as project-builder
+FROM maven:3.9.5-eclipse-temurin-21-alpine AS build
 
-RUN microdnf update -y oraclelinux-release-el9 \
-    && microdnf --enablerepo ol9_codeready_builder install -y zip unzip \
-    && microdnf clean all
-
-RUN curl -s "https://get.sdkman.io" | bash
-RUN source "$HOME/.sdkman/bin/sdkman-init.sh"  \
-    && sdk install maven
-#RUN source "$HOME/.sdkman/bin/sdkman-init.sh"  \
-#    && sdk install java 22.3.1.r19-grl
-RUN gu install native-image
-
-WORKDIR /app
+WORKDIR /usr/src/app
 
 ENV MAVEN_DIRECTORY "/root/.m2"
 
 COPY --from=parent-loader ${MAVEN_DIRECTORY} ${MAVEN_DIRECTORY}
 COPY --from=libs-loader ${MAVEN_DIRECTORY} ${MAVEN_DIRECTORY}
+
 COPY .m[2]/ $MAVEN_DIRECTORY
+
 ADD feign-client-usage/ feign-client-usage
 ADD hibernate-cache-ehcache/ hibernate-cache-ehcache
-ADD starter/ starter
 ADD work-on-database/ work-on-database
+ADD steps-domain-usage/ steps-domain-usage
+ADD starter/ starter
 ADD pom.xml .
 
-RUN source "$HOME/.sdkman/bin/sdkman-init.sh" \
-   && mvn clean package
+RUN mvn package
 
-FROM ghcr.io/graalvm/jdk:latest
+FROM amazoncorretto:21-alpine-jdk
 
 WORKDIR /app
 
-COPY --from=project-builder /app/starter/target/development-features.jar .
-
-CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "development-features.jar"]
+COPY --from=build /usr/src/app/target/development-features.jar /app/development-features.jar
+ENTRYPOINT ["java", "-jar", "/app/development-features.jar"]

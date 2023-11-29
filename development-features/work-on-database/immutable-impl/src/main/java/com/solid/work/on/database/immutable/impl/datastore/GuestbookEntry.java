@@ -9,8 +9,8 @@ import org.hibernate.annotations.Immutable;
 
 @Entity
 @Table(name = TableDef.TableName.GUESTBOOK_ENTRY)
-@Immutable
 @Getter
+@Immutable
 @Setter(AccessLevel.PACKAGE)
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class GuestbookEntry extends BaseEntity {
@@ -19,10 +19,11 @@ public class GuestbookEntry extends BaseEntity {
     private String fullName;
 
     @Column(name = TableDef.ColumnDef.EhcacheTest.VISIT_TIME)
-    private Long visitTime;
+    private Long visitTime = System.currentTimeMillis();
 
     @Builder(access = AccessLevel.PACKAGE)
     GuestbookEntry(String fullName) {
+        super();
         this.fullName = fullName;
         this.visitTime = System.currentTimeMillis();
     }
@@ -31,9 +32,7 @@ public class GuestbookEntry extends BaseEntity {
         return new GuestbookEntry(fullName);
     }
 
-    public GuestbookEntry update(String fullName) {
+    public void update(String fullName) {
         this.fullName = fullName;
-
-        return this;
     }
 }

@@ -17,13 +17,13 @@ public class WorkOnDatabaseFlywayConfiguration {
     }
 
     @Bean("workOnDatabaseFlyway")
-    public void workOnDatabaseFlyway() {
-        Flyway.configure()
+    public Flyway workOnDatabaseFlyway() {
+        Flyway flyway = Flyway.configure()
                 .dataSource(workOnDatabaseDataSource)
                 .locations("work-on-database/migrations")
                 .baselineOnMigrate(true)
-                .load()
-                .migrate();
+                .load();
+        flyway.migrate();
+        return flyway;
     }
-
 }

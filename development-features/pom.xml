@@ -10,14 +10,14 @@
     </parent>
 
     <artifactId>development-features</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${build-version}</version>
     <packaging>pom</packaging>
 
     <name>development-features</name>
     <description>development-features</description>
 
     <properties>
-        <start-class>com.solid.starter.DevelopmentFeaturesApplication</start-class>
+        <build-version>0.0.1-SNAPSHOT</build-version>
         <common-lib.version>0.0.1-SNAPSHOT</common-lib.version>
     </properties>
 
@@ -44,6 +44,7 @@
         <module>feign-client-usage</module>
         <module>hibernate-cache-ehcache</module>
         <module>work-on-database</module>
+        <module>steps-domain-usage</module>
     </modules>
 
 </project>

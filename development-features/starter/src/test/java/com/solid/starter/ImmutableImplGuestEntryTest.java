@@ -5,18 +5,13 @@ import com.solid.work.on.database.immutable.impl.datastore.GuestbookEntryFactory
 import com.solid.work.on.database.immutable.impl.repository.GuestbookEntryRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cloud.openfeign.FeignAutoConfiguration;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
-@ImportAutoConfiguration({FeignAutoConfiguration.class})
-public class ImmutableImplGuestEntryTest {
+public class ImmutableImplGuestEntryTest implements ApplicationUnitTest {
 
     @Autowired
     private GuestbookEntryRepository guestbookEntryRepository;
@@ -35,17 +30,18 @@ public class ImmutableImplGuestEntryTest {
 
     @Test
     public void testUpdateEntryGettingEntity() {
+        System.out.println("lllllllllllll");
         // given
-        GuestbookEntry entry = GuestbookEntryFactory.build("Łukasz Bielak");
-        entry = guestbookEntryRepository.save(entry);
+        GuestbookEntry entry = GuestbookEntryFactory.build("Łukasz Bielaz");
+        entry = guestbookEntryRepository.saveAndFlush(entry);
         final String newFullName = "Łukasz Bielaj";
 
         //when
-        entry = guestbookEntryRepository.save(entry.update(newFullName));
-
         assert entry.getId() != null;
+        entry.update(newFullName);
+        guestbookEntryRepository.saveAndFlush(entry);
         Optional<GuestbookEntry> foundEntryAfterUpdate = guestbookEntryRepository.findById(entry.getId());
-        
+
         //then
         assertNotEquals(
                 newFullName,

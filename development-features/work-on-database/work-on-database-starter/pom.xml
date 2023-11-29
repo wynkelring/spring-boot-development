@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.solid</groupId>
         <artifactId>work-on-database</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${build-version}</version>
     </parent>
 
     <artifactId>work-on-database-starter</artifactId>
@@ -25,6 +25,12 @@
         <dependency>
             <groupId>com.solid</groupId>
             <artifactId>immutable-impl</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.solid</groupId>
+            <artifactId>relations-impl</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

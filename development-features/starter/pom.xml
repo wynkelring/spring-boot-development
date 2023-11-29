@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.solid</groupId>
         <artifactId>development-features</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>${build-version}</version>
     </parent>
 
     <artifactId>starter</artifactId>
@@ -64,22 +64,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>repackage</id>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>${start-class}</mainClass>
-                    <finalName>${project.parent.artifactId}</finalName>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.graalvm.buildtools</groupId>
-                <artifactId>native-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
